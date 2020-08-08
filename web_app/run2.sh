@@ -1,1 +1,1 @@
-uvicorn server2.sh --port 8888
+uvicorn server2:app --port 8888

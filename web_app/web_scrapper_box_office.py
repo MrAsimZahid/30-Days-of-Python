@@ -24,29 +24,29 @@ def parse_and_extrac(url, name='2020'):
     r_html = HTML(html=html_text)
     table_class = ".imdb-scroll-table"
     r_table = r_html.find(table_class)
-    print(r_table)
+#    print(r_table)
 
     table_data = []
     header_names = []
     if len(r_table) == 0:
          return False
-    print(r_table[0].text)
+#    print(r_table[0].text)
     parsed_table = r_table[0]
     rows = parsed_table.find("tr")
     header_row = rows[0]
     header_cols = header_row.find('th')
     header_names = [x.text for x in header_cols]
     for row in rows[1:]:
-        print(row.text)
+#        print(row.text)
         cols = row.find("td")
         row_data = []
         for i, col in enumerate(cols):
-            print(i, col.text, '\n\n')
+#            print(i, col.text, '\n\n')
             row_data.append(col.text)
         table_data.append(row_data)
 
-    print(header_names)
-    print(table_data)
+ #   print(header_names)
+  #  print(table_data)
 
     df = pd.DataFrame(table_data, columns=header_names)
     path = os.path.join(BASE_DIR, 'data')

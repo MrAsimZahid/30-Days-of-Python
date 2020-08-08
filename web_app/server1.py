@@ -7,8 +7,13 @@ app = Flask(__name__)
 def hello_world():
     return "this is a flask, server1"
 
+#ocalhost=http://0.0.0.0:8000/
+@app.route("/abc", methods=['GET'])
+def abs():
+    return "abc function"
 
-@app.route("/box-office-mojo-scrapper", methods=['POST'])
+
+@app.route("/box-office-mojo-scrapper", methods=['GET'])
 def box_office_scraper_view():
     scrape_runner()
     return "done"
