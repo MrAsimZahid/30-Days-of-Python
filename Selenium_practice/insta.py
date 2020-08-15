@@ -103,11 +103,89 @@ def scrape_and_save(elements):
                     if chunk:
                         f.write(chunk)
 
+"""
+Long term goal:
+use machine learning to clarify the post's
+image or video
+and then comment in a relevant fashion
+"""
+"""
 scrape_and_save(video_els)
 scrape_and_save(image_els)
 
-"""
 while True:
     time.sleep(2)
     click_to_follow(browser)
 """
+
+"""
+<textarea aria-label="Add a comment…" 
+placeholder="Add a comment…" class="Ypffh" 
+autocomplete="off" autocorrect="off" 
+style="height: 18px;"></textarea>
+"""
+
+def automate_comment(browser, content="That is cool!"):
+    time.sleep(3)
+    comment_xpath_str = "//textarea[contains(@placeholder, 'Add a comment')]"
+    comment_el = browser.find_element_by_xpath(comment_xpath_str)
+    time.sleep(2)
+    comment_el.send_keys(content)
+    submit_btns_xpath = "button[type='submit']"
+    submit_btns_els = browser.find_elements_by_css_selector(submit_btns_xpath)
+    time.sleep(2)
+    for btn in submit_btns_els:
+        try:
+            btn.click()
+        except:
+            pass
+
+
+"""
+def automated_comments(browser, content="Awesome!! @mooroosicity"):
+    time.sleep(3)
+    commet_xpath_str = "//textarea[contains(@placeholder, 'Add a comment…')]"
+    comment_el = browser.find_element_by_xpath(commet_xpath_str)
+    time.sleep(2)
+    comment_el.send_keys(content)
+    submit_btns_xpath = "button[type='submit']"
+    submit_btns_els = browser.find_elements_by_css_selector(submit_btns_xpath)
+    time.sleep(3)
+    for btn in submit_btns_els:
+        try:
+            btn.click()
+        except:
+            pass
+"""
+
+def automate_likes(browser):
+    time.sleep(2)
+    like_heart_svg_xpath = "//*[contains(@aria-label, 'Like')]"
+    all_like_hearts_elements = browser.find_elements_by_xpath(like_heart_svg_xpath)
+    time.sleep(2)
+    max_heart_h = -1
+    for heart_el in all_like_hearts_elements:
+        h = heart_el.get_attribute("height")
+        current_h = int(h)
+        if current_h > max_heart_h:
+            max_heart_h = current_h
+
+    time.sleep(2)
+    like_heart_svg_xpath = "//*[contains(@aria-label, 'Like')]"
+    all_like_hearts_elements = browser.find_elements_by_xpath(like_heart_svg_xpath)
+
+    for heart_el in all_like_hearts_elements:
+        print(heart_el.get_attribute("height"))
+        height = heart_el.get_attribute("height")
+        if height == max_heart_h or height == f"{max_heart_h}":
+            parent_button = heart_el.find_elements_by_xpath('..')
+            print(parent_button)
+            time.sleep(2)
+            try:
+                parent_button.click()
+            except:
+                pass
+
+automate_likes(browser)
+automate_comment(browser, content="Awesome!! @mooroosicity")
+automate_likes(browser)
