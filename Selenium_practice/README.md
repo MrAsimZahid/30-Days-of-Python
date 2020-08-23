@@ -1,4 +1,4 @@
-# Instagrm Automation
+# Instagram Automation
 
 In this project, I practiced accesing and automating password proteced apps(instagram).
 
@@ -11,6 +11,9 @@ pip install -r requirements.txt
 ```
 ## Features
 
+- [x] Open browser, access Instagram website.
+- [x] Enter username, password and login to website.
+- [x] By pass all small hurdles during runnning.
 - [x] Following a given user.
 - [x] Follow suggested users after following the main user.
 - [x] Open a user post.
