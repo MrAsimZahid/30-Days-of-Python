@@ -19,7 +19,7 @@ MarkupSafe==1.1.1
 numpy==1.22.0
 pandas==1.1.0
 parse==1.16.0
-pydantic==1.6.1
+pydantic==1.6.2
 pyee==7.0.2
 pyppeteer==0.2.2
 pyquery==1.4.1
